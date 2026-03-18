@@ -1,7 +1,6 @@
 tap "felixkratz/formulae"
 tap "koekeishiya/formulae"
 tap "lizardbyte/homebrew"
-tap "nikitabobko/tap"
 tap "playcover/playcover"
 brew "carthage"
 brew "duti"
