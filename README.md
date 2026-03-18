@@ -1,6 +1,6 @@
 # kevbee dotfiles
 
-macOS setup: yabai + skhd + sketchybar + Übersicht + aerospace
+macOS setup: yabai + skhd + sketchybar + Übersicht
 
 ## New machine
 
@@ -44,8 +44,7 @@ dotfiles/
     ├── yabai/
     ├── skhd/
     ├── sketchybar/
-    ├── ubersicht/
-    └── aerospace/
+    └── ubersicht/
 ```
 
 ## Tools
@@ -56,4 +55,3 @@ dotfiles/
 | [skhd](https://github.com/koekeishiya/skhd) | Hotkeys | `config/skhd/` |
 | [sketchybar](https://github.com/FelixKratz/SketchyBar) | Menu bar | `config/sketchybar/` |
 | [Übersicht](https://tracesof.net/uebersicht/) | Desktop widgets | `config/ubersicht/` |
-| [aerospace](https://github.com/nikitabobko/AeroSpace) | Alt WM | `config/aerospace/` |
