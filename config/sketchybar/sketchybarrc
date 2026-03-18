@@ -1,0 +1,41 @@
+#!/bin/bash
+source "$HOME/.config/sketchybar/config.sh"
+
+"$HOME/.config/kitty/set-theme.sh"
+
+sketchybar --bar height=40 blur_radius=30 position=top sticky=on padding_left=10 padding_right=10 color=$BAR_COLOR topmost=off notch_width=300
+
+sketchybar --default padding_left=5 padding_right=5 \
+  icon.font="$FONT:Regular:$FONT_SIZE" label.font="$FONT:Regular:$FONT_SIZE" \
+  icon.color=$ICON_COLOR label.color=$LABEL_COLOR \
+  icon.padding_left=4 icon.padding_right=4 label.padding_left=4 label.padding_right=4
+
+sketchybar --add item spaces left \
+           --set spaces script="$PLUGIN_DIR/spaces.sh" update_freq=2
+
+sketchybar --add item calendar left \
+           --set calendar script="$PLUGIN_DIR/calendar.sh" update_freq=$FREQ_CALENDAR
+
+sketchybar --add item nowplaying left \
+           --set nowplaying script="$PLUGIN_DIR/nowplaying.sh" update_freq=$FREQ_NOWPLAYING \
+                            icon="" label="-- --"
+
+sketchybar --add item clock right \
+           --set clock script="$PLUGIN_DIR/clock.sh" update_freq=$FREQ_CLOCK
+
+sketchybar --add item weather right \
+           --set weather script="$PLUGIN_DIR/weather.sh" update_freq=$FREQ_WEATHER
+
+sketchybar --add item mail right \
+           --set mail script="$PLUGIN_DIR/mail.sh" update_freq=$FREQ_MAIL
+
+sketchybar --add item cpu right \
+           --set cpu script="$PLUGIN_DIR/cpu.sh" update_freq=$FREQ_CPU
+
+sketchybar --add item battery right \
+           --set battery script="$PLUGIN_DIR/battery.sh" update_freq=$FREQ_BATTERY
+
+sketchybar --add item wifi right \
+           --set wifi script="$PLUGIN_DIR/wifi.sh" update_freq=$FREQ_WIFI
+
+sketchybar --update
