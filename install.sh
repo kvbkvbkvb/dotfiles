@@ -67,7 +67,6 @@ echo "==> Linking configs..."
 make_link "$CONFIG/yabai"       "$HOME/.config/yabai"
 make_link "$CONFIG/skhd"        "$HOME/.config/skhd"
 make_link "$CONFIG/sketchybar"  "$HOME/.config/sketchybar"
-make_link "$CONFIG/aerospace/aerospace.toml" "$HOME/.aerospace.toml"
 
 UBER_DEST="$HOME/Library/Application Support/Übersicht/widgets"
 UBER_SRC="$CONFIG/ubersicht/widgets"
