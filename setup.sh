@@ -64,18 +64,6 @@ UBER_DEST="$CONFIG/ubersicht/widgets"
 backup_and_link "$UBER_SRC" "$UBER_DEST"
 
 echo ""
-echo "==> aerospace"
-if [[ -f "$HOME/.aerospace.toml" && ! -L "$HOME/.aerospace.toml" ]]; then
-  mkdir -p "$CONFIG/aerospace"
-  cp "$HOME/.aerospace.toml" "$CONFIG/aerospace/aerospace.toml"
-  rm "$HOME/.aerospace.toml"
-  ln -sf "$CONFIG/aerospace/aerospace.toml" "$HOME/.aerospace.toml"
-  echo "    [link]  ~/.aerospace.toml → $CONFIG/aerospace/aerospace.toml"
-elif [[ -L "$HOME/.aerospace.toml" ]]; then
-  echo "    [skip] ~/.aerospace.toml is already a symlink"
-fi
-
-echo ""
 echo "Done! Your configs are now managed from:"
 echo "  $CONFIG"
 echo ""
