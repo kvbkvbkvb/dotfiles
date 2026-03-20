@@ -47,6 +47,31 @@ except:
     result['swap_pct'] = 0
     result['swap'] = '?'
 
+# LOAD AVERAGE
+load1, load5, load15 = os.getloadavg()
+result['load'] = f'{load1:.2f}  {load5:.2f}  {load15:.2f}'
+result['load1'] = load1
+
+# UPTIME
+try:
+    bt_raw = subprocess.check_output(['sysctl', '-n', 'kern.boottime'], text=True)
+    m = re.search(r'sec = (\d+)', bt_raw)
+    if m:
+        up_sec = int(time.time()) - int(m.group(1))
+        days = up_sec // 86400
+        hours = (up_sec % 86400) // 3600
+        mins = (up_sec % 3600) // 60
+        if days > 0:
+            result['uptime'] = f'{days}d {hours}h {mins}m'
+        elif hours > 0:
+            result['uptime'] = f'{hours}h {mins}m'
+        else:
+            result['uptime'] = f'{mins}m'
+    else:
+        result['uptime'] = '?'
+except:
+    result['uptime'] = '?'
+
 # DISKS
 def fmt_kb(kb):
     gb = kb / 1048576
@@ -215,5 +240,45 @@ try:
     result['wx'] = wx
 except:
     result['wx'] = {'temp': 'N/A', 'tempF': 32, 'temp_pct': 0, 'code': '?', 'wind': 'N/A'}
+
+# PUBLIC IP
+PUB_IP_CACHE = '/tmp/ss_pubip.json'
+PUB_IP_TTL = 300
+try:
+    pub_ip = None
+    if os.path.exists(PUB_IP_CACHE):
+        with open(PUB_IP_CACHE) as f:
+            pc = json.load(f)
+        if time.time() - pc.get('t', 0) < PUB_IP_TTL:
+            pub_ip = pc.get('ip')
+    if pub_ip is None:
+        with urllib.request.urlopen('https://api.ipify.org', timeout=5) as r:
+            pub_ip = r.read().decode().strip()
+        with open(PUB_IP_CACHE, 'w') as f:
+            json.dump({'t': time.time(), 'ip': pub_ip}, f)
+    result['pub_ip'] = pub_ip
+except:
+    result['pub_ip'] = ''
+
+# SERVER PING
+SERVER_CACHE = '/tmp/ss_server.json'
+SERVER_TTL = 30
+SERVER_HOST = 'server.weasel-banfish.ts.net'
+try:
+    srv = None
+    if os.path.exists(SERVER_CACHE):
+        with open(SERVER_CACHE) as f:
+            sc = json.load(f)
+        if time.time() - sc.get('t', 0) < SERVER_TTL:
+            srv = sc.get('up')
+    if srv is None:
+        ret = subprocess.call(['ping', '-c', '1', '-t', '2', SERVER_HOST],
+                              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        srv = ret == 0
+        with open(SERVER_CACHE, 'w') as f:
+            json.dump({'t': time.time(), 'up': srv}, f)
+    result['server_up'] = srv
+except:
+    result['server_up'] = None
 
 print(json.dumps(result))

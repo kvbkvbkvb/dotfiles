@@ -1,12 +1,14 @@
 export const command = `echo ""`
 export const refreshFrequency = false
+// Layout grid: outer padding 171px left/right, top boundary ~156px, bottom boundary ~1006px.
+// Keep all widget bounds within these margins — do not extend past the southern edge.
 export const className = `
   text-transform: uppercase;
   top: 1019px; left: 171px; width: 340px; height: 0px; overflow: hidden;
   --bg: rgba(44, 46, 52, 0.85); --bg2: #363944; --border: #414550;
   --text: #e2e2e3; --text2: #7f8490;
   --red: #FF5555; --orange: #FF9838; --yellow: #FFD02A; --green: #6ECD6B;
-  --teal: #5EE0D4; --blue: #6B9FFF; --indigo: #BB66DD; --purple: #BB66DD; --pink: #FF4488;
+  --teal: #5EE0D4; --blue: #3B82F7; --indigo: #BB66DD; --purple: #BB66DD; --pink: #FF4488;
 `
 function Window({ title, children }) {
   return (

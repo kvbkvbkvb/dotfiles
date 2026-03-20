@@ -26,12 +26,14 @@ except:
 
 export const refreshFrequency = 30000
 
+// Layout grid: outer padding 171px left/right, top boundary ~156px, bottom boundary ~1006px.
+// Keep all widget bounds within these margins — do not extend past the southern edge.
 export const className = `
   text-transform: uppercase;
   top: 811px; right: 519px; width: 680px; height: 0px; overflow: hidden;
   --bg: #ffffff; --bg2: #f2f2f7; --border: #e5e5ea; --text: #000000; --text2: #6e6e73;
   --red: #FF5555; --orange: #FF9838; --yellow: #FFD02A; --green: #6ECD6B;
-  --teal: #5EE0D4; --blue: #6B9FFF; --indigo: #7B82FF; --purple: #BB66DD; --pink: #FF4488;
+  --teal: #5EE0D4; --blue: #3B82F7; --indigo: #7B82FF; --purple: #BB66DD; --pink: #FF4488;
   @media (prefers-color-scheme: dark) {
     --bg: #1c1c1e; --bg2: #2c2c2e; --border: #3a3a3c; --text: #ffffff; --text2: #8e8e93;
   }

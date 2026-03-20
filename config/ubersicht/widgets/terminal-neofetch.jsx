@@ -20,6 +20,8 @@ export const command = `
 
 export const refreshFrequency = 3000
 
+// Layout grid: outer padding 171px left/right, top boundary ~156px, bottom boundary ~1006px.
+// Keep all widget bounds within these margins — do not extend past the southern edge.
 export const className = `
   text-transform: uppercase;
   top: 156px; right: 519px; width: 680px; height: 420px;
@@ -27,7 +29,7 @@ export const className = `
   --bg: #1c1c1e; --bg2: #2c2c2e; --border: #3a3a3c;
   --text: #DDDDDD; --text2: #8e8e93;
   --red: #FF5555; --orange: #FF9838; --yellow: #FFD02A; --green: #6ECD6B;
-  --teal: #5EE0D4; --blue: #6B9FFF; --purple: #BB66DD; --pink: #FF4488;
+  --teal: #5EE0D4; --blue: #3B82F7; --purple: #BB66DD; --pink: #FF4488;
 `
 
 function cpuColor(pct) {
